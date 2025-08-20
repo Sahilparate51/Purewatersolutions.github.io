@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pure Water Solutions</title>
+  <meta name="description" content="Pure Water Solutions – RO purifier installation, maintenance & repair. 24/7 support, certified technicians, free installation, 1‑year warranty." />
+  <style>
+    :root{
+      --bg:#f6fbff;
+      --card:#ffffff;
+      --text:#0f172a; /* slate-900 */
+      --muted:#475569; /* slate-600 */
+      --line:#e6eef6;
+      --primary:#1677ff; /* blue */
+      --primary-2:#12c2b9; /* teal */
+      --accent:#22c55e; /* green */
+      --warning:#f59e0b; /* amber */
+      --danger:#ef4444; /* red */
+      --shadow:0 10px 30px rgba(16,24,40,.08);
+      --radius:16px;
+      --radius-lg:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background: radial-gradient(1200px 500px at 70% -50%, #e8f5ff 0%, transparent 60%) , var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit}
+    img{max-width:100%;display:block}
+
+    /* Utility */
+    .container{width:min(1200px, 92%); margin-inline:auto}
+    .pill{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .75rem;border-radius:999px;background:#eaf4ff;color:#0b63e6;font-weight:600;font-size:.85rem}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.9rem 1.15rem;border-radius:12px;border:1px solid transparent;font-weight:700;text-decoration:none;transition:.2s box-shadow,.2s transform,.2s background}
+    .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+    .btn-primary{background:linear-gradient(90deg,var(--primary),var(--primary-2));color:#fff}
+    .btn-ghost{background:#fff;border-color:var(--line)}
+    .check{color:var(--accent);font-size:1.1rem}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .grid{display:grid;gap:24px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.75);backdrop-filter: blur(10px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
+    .brand{display:flex;align-items:center;gap:.65rem;font-weight:900;letter-spacing:.3px}
+    .brand .logo{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:conic-gradient(from 210deg at 50% 50%, #0ea5e9, #22d3ee, #10b981);color:#fff;font-weight:900;box-shadow:0 6px 16px rgba(14,165,233,.35)}
+    .menu{display:flex;gap:1.2rem;align-items:center}
+    .menu a{color:var(--muted);text-decoration:none;font-weight:600}
+    .menu a.active,.menu a:hover{color:#0b63e6}
+    .mobile-toggle{display:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:.5rem}
+
+    /* Hero */
+    .hero{padding:64px 0 32px}
+    .hero-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:42px;align-items:center}
+    .hero h1{font-size:clamp(2rem,4vw,3.25rem);line-height:1.1;margin:0 0 12px}
+    .hero h1 .accent{background:linear-gradient(90deg,var(--primary),var(--primary-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{color:var(--muted);font-size:1.05rem;margin:0 0 18px}
+    .badge-row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 18px}
+    .feature-list{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 26px}
+    .feature{padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;display:flex;align-items:center;gap:.55rem;font-weight:700}
+    .hero-media{position:relative}
+    .hero-card{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 30px 60px rgba(2,6,23,.12)}
+    .hero-stamp{position:absolute;top:14px;left:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.5rem .75rem;display:flex;align-items:center;gap:.5rem;box-shadow:var(--shadow);font-weight:700}
+
+    /* Stats */
+    .stats{padding:22px 0 60px}
+    .stats .grid{grid-template-columns:repeat(4,1fr)}
+    .stat{padding:22px;border-radius:14px;background:linear-gradient(180deg,#ffffff, #f6fbff);border:1px solid var(--line);text-align:center}
+    .stat .num{font-size:1.8rem;font-weight:900}
+    .stat .label{color:var(--muted);font-weight:600}
+
+    /* Services */
+    .section{padding:64px 0}
+    .section h2{font-size:clamp(1.6rem,3.2vw,2.2rem);text-align:center;margin:0 0 10px}
+    .section p.lead{color:var(--muted);text-align:center;margin:0 auto 28px;max-width:780px}
+    .services .grid{grid-template-columns:repeat(3,1fr)}
+    .service{padding:26px;position:relative}
+    .service:focus-within,.service:hover{box-shadow:var(--shadow)}
+    .service h3{margin:.2rem 0 6px;font-size:1.35rem}
+    .service ul{margin:12px 0 18px;padding:0 0 0 20px}
+    .service .btn{width:100%}
+    .service.popular{outline:2px solid #7fb2ff}
+
+    /* Process */
+    .process .grid{grid-template-columns:repeat(4,1fr)}
+    .step{padding:22px;text-align:center}
+    .step .icon{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;margin:0 auto 10px;background:linear-gradient(90deg,#e0f2fe,#d1fae5);border:1px solid var(--line)}
+    .reasons .grid{grid-template-columns:repeat(3,1fr)}
+
+    /* Testimonials */
+    .testimonials .grid{grid-template-columns:repeat(3,1fr)}
+    .quote{padding:20px;display:flex;flex-direction:column;gap:12px}
+    .quote .stars{color:#fbbf24}
+    .quote .name{font-weight:800}
+
+    /* Additional */
+    .features-alt .grid{grid-template-columns:repeat(3,1fr)}
+
+    /* Contact */
+    .contact .grid{grid-template-columns:1fr 1fr}
+    form{display:grid;gap:12px}
+    input,select,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);outline:none;font:inherit}
+    textarea{min-height:120px;resize:vertical}
+    .form-row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+
+    /* Footer */
+    footer{padding:40px 0 24px;background:#0b1220;color:#cbd5e1}
+    footer .grid{grid-template-columns:2fr 1fr 1fr 1fr}
+    footer a{color:#cbd5e1;text-decoration:none}
+    .sub{border-top:1px solid rgba(255,255,255,.08);margin-top:22px;padding-top:18px;color:#94a3b8;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .hero-wrap{grid-template-columns:1fr}
+      .services .grid{grid-template-columns:repeat(2,1fr)}
+      .process .grid{grid-template-columns:repeat(2,1fr)}
+      .reasons .grid{grid-template-columns:repeat(2,1fr)}
+      .testimonials .grid{grid-template-columns:repeat(2,1fr)}
+      .features-alt .grid{grid-template-columns:repeat(2,1fr)}
+      .contact .grid{grid-template-columns:1fr}
+      footer .grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .menu{display:none}
+      .mobile-toggle{display:inline-grid}
+      .stats .grid{grid-template-columns:repeat(2,1fr)}
+      .services .grid,.process .grid,.reasons .grid,.testimonials .grid,.features-alt .grid{grid-template-columns:1fr}
+      .form-row{grid-template-columns:1fr}
+      footer .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Pure Water Solutions">
+        <span class="logo">💧</span>
+        <span>Pure Water Solutions</span>
+      </a>
+      <nav class="menu" aria-label="Primary">
+        <a class="active" href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#process">How It Works</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+       
+      </nav>
+      <a class="btn btn-primary" href="#contact">Get Quote</a>
+      <button class="mobile-toggle" aria-label="Open Menu" onclick="document.querySelector('.drawer').classList.toggle('open')">☰</button>
+    </div>
+    <!-- Mobile Drawer -->
+    <div class="drawer" style="display:none"></div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <span class="pill">#1 Rated Water Purification Service</span>
+        <h1>Pure Water for a <span class="accent">Healthier Life</span></h1>
+        <p>Professional RO purifier installation, maintenance, and repair services. Our certified team ensures your family gets the cleanest, safest water every day.</p>
+
+        <div class="feature-list">
+          <div class="feature card"><span class="check">✔</span> 24/7 Support</div>
+          <div class="feature card"><span class="check">✔</span> Free Installation</div>
+          <div class="feature card"><span class="check">✔</span> 1 Year Warranty</div>
+        </div>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="#contact">📞 Book Service Now</a>
+          <a class="btn btn-ghost" href="#services">View Services</a>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="hero-stamp">🧪 99.9% Purity Verified</div>
+        <div class="hero-card">
+          <img src="/Images/RO.png" alt="Glass of pure water" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+    
+
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="container grid">
+      <div class="stat card">
+        <div class="num">1K+</div>
+        <div class="label">Happy Customers</div>
+      </div>
+      <div class="stat card">
+        <div class="num">4+</div>
+        <div class="label">Years Experience</div>
+      </div>
+      <div class="stat card">
+        <div class="num">1K+</div>
+        <div class="label">Systems Installed</div>
+      </div>
+      <div class="stat card">
+        <div class="num">4.9</div>
+        <div class="label">Average Rating</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="section services">
+    <div class="container">
+      <h2>Complete Water Purification <span class="accent" style="background:linear-gradient(90deg,var(--primary),var(--primary-2));-webkit-background-clip:text;background-clip:text;color:transparent">Solutions</span></h2>
+      <p class="lead">From installation to maintenance, we provide comprehensive RO water purification services to ensure your family always has access to pure, clean water.</p>
+
+      <div class="grid">
+        <article class="service card">
+          <h3>RO System Installation</h3>
+          <p>Professional installation of premium RO systems with free home inspection and water quality testing.</p>
+          <ul>
+            <li>Free site inspection</li>
+            <li>Professional setup</li>
+            <li>Quality testing</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact">Get Started →</a>
+        </article>
+
+        <article class="service card popular">
+          <h3>Maintenance & Repair</h3>
+          <p>Comprehensive maintenance and expert repairs to keep your RO system running at peak performance.</p>
+          <ul>
+            <li>Filter replacement</li>
+            <li>System cleaning</li>
+            <li>Performance optimization</li>
+            <li>24/7 emergency repair</li>
+          </ul>
+          <a class="btn btn-primary" href="#contact">Get Started →</a>
+        </article>
+
+        <article class="service card">
+          <h3>Annual Maintenance Plan</h3>
+          <p>Complete peace of mind with our comprehensive annual maintenance program covering all purification needs.</p>
+          <ul>
+            <li>Quarterly servicing</li>
+            <li>Free filter changes</li>
+            <li>Priority support</li>
+            <li>Extended warranty</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact">Get Started →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional Services -->
+  <section class="section features-alt">
+    <div class="container">
+      <h2>Additional Services</h2>
+      <p class="lead">Comprehensive water analysis, emergency repairs, and system upgrades tailored to your needs.</p>
+      <div class="grid">
+        <div class="card" style="padding:20px">
+          <h3>💧 Water Quality Testing</h3>
+          <p>Detailed water tests to determine the best purification setup for your home.</p>
+        </div>
+        <div class="card" style="padding:20px">
+          <h3>🆘 Emergency Repair</h3>
+          <p>24/7 emergency service so you never run out of clean water.</p>
+        </div>
+        <div class="card" style="padding:20px">
+          <h3>🛠️ System Upgrades</h3>
+          <p>Upgrade your existing system with the latest filtration technology.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="section process">
+    <div class="container">
+      <span class="pill" style="display:block;margin:0 auto 10px; width:max-content">Our Process</span>
+      <h2>How We Deliver <span class="accent" style="background:linear-gradient(90deg,var(--primary),var(--primary-2));-webkit-background-clip:text;background-clip:text;color:transparent">Pure Water</span></h2>
+      <p class="lead">A simple 4‑step process to get the perfect solution – with professional installation and ongoing support.</p>
+      <div class="grid">
+        <div class="step card">
+          <div class="icon">📞</div>
+          <h3>Contact Us</h3>
+          <p>Call us or fill out the form to schedule a free consultation.</p>
+        </div>
+        <div class="step card">
+          <div class="icon">📅</div>
+          <h3>Schedule Inspection</h3>
+          <p>Technician visits your home for testing and a system recommendation.</p>
+        </div>
+        <div class="step card">
+          <div class="icon">🔧</div>
+          <h3>Professional Install</h3>
+          <p>Expert installation with complete setup and initial testing.</p>
+        </div>
+        <div class="step card">
+          <div class="icon">✅</div>
+          <h3>Quality Assurance</h3>
+          <p>Final testing & demonstration to ensure perfect purity every time.</p>
+        </div>
+      </div>
+
+      <div class="section reasons" style="padding-top:34px">
+        <h2>Why Choose Our Process?</h2>
+        <p class="lead">Refined through years of experience to provide the best results for every customer.</p>
+        <div class="grid">
+          <div class="card" style="padding:20px">
+            <h3>⚡ Same‑Day Service</h3>
+            <p>Emergency repairs and installations available with a same‑day guarantee.</p>
+          </div>
+          <div class="card" style="padding:20px">
+            <h3>🛡️ 1‑Year Warranty</h3>
+            <p>Comprehensive coverage on all installations and major repair work.</p>
+          </div>
+          <div class="card" style="padding:20px">
+            <h3>🎓 Certified Technicians</h3>
+            <p>All technicians are trained in the latest purification technologies.</p>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:18px">
+          <a class="btn btn-primary" href="#contact">Start Your Water Journey →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section testimonials" style="background:linear-gradient(180deg,#f6fbff,#ffffff)">
+    <div class="container">
+      <span class="pill" style="display:block;margin:0 auto 10px;width:max-content">Customer Reviews</span>
+      <h2>What Our Customers <span class="accent" style="background:linear-gradient(90deg,var(--primary),var(--primary-2));-webkit-background-clip:text;background-clip:text;color:transparent">Say About Us</span></h2>
+      <p class="lead">Real feedback from families who trust Pure Water Solutions for their purification needs.</p>
+      <div class="grid">
+        <div class="quote card">
+          <div class="stars">★★★★★</div>
+          <p>“I had a fantastic experience with Pure Water Solution. The service provided was quick, reliable, and highly professional. A special thanks to Santosh Sir, who guided us throughout the process with clarity and dedication. His polite behavior, prompt response, and expert knowledge made the entire experience smooth and stress-free.”</p>
+          <div class="name">— Sahil Parate</div>
+        </div>
+        <div class="quote card">
+          <div class="stars">★★★★★</div>
+          <p>“Impressed by Their quick services and clear communication, highly recommend their service in pune.”</p>
+          <div class="name">— Swapnil Awchar</div>
+        </div>
+        <div class="quote card">
+          <div class="stars">★★★★★</div>
+          <p>“"Pure Water Solution is one of the best service providers in Pune. The staff is polite and professional, and they did the installation on time without any hassle. My purifier is working perfectly, and they also guided me on regular maintenance. Great experience overall!"”</p>
+          <div class="name">— Ankit Shukla</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- Contact -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <h2>Ready for Pure Water? <span class="accent" style="background:linear-gradient(90deg,var(--primary),var(--primary-2));-webkit-background-clip:text;background-clip:text;color:transparent">Let's Talk!</span></h2>
+      <p class="lead">Contact us for a free consultation and water quality assessment. Our team is ready to help you find the perfect solution.</p>
+      <div class="grid">
+        <form class="card" onsubmit="event.preventDefault(); alert('Thanks! We\'ll get back to you shortly.'); this.reset();" style="padding:20px">
+          <div class="form-row">
+            <input required placeholder="Full Name" />
+            <input required type="tel" placeholder="Phone Number" />
+          </div>
+          <input required type="email" placeholder="Email Address" />
+          <select required>
+            <option value="" disabled selected>Select a service</option>
+            <option>RO Installation</option>
+            <option>Maintenance & Repair</option>
+            <option>Water Quality Testing</option>
+          </select>
+          <textarea placeholder="Tell us about your water quality concerns or any specific requirements..."></textarea>
+          <button class="btn btn-primary" type="submit">Send My Request</button>
+          <small style="color:var(--muted)">By clicking, you agree to our privacy policy and allow us to contact you.</small>
+        </form>
+
+        <div class="grid" style="gap:16px">
+          <div class="card" style="padding:18px">
+            <h3>📞 Call Us Now</h3>
+            <p><a href="tel:7030408866">7030408866</a></p>
+          </div>
+          <div class="card" style="padding:18px">
+            <h3>✉️ Email</h3>
+            <p><a href="khadge.santosh8866@gmail.com">khadge.santosh8866@gmail.com</a></p>
+          </div>
+          <div class="card" style="padding:18px">
+            <h3>🏢 Visit Our Office</h3>
+            <p> Dhanori, Pune, Maharashtra 411015</p>
+          </div>
+          <div class="card" style="padding:18px">
+            <h3>💬 Live Chat</h3>
+            <p>Available 24/7 — average reply under 5 minutes.</p>
+          </div>
+          <div class="card" style="padding:18px;background:linear-gradient(90deg,#fda4af,#fca5a5);color:#111">
+            <h3>🚨 24/7 Emergency</h3>
+            <p>Don’t wait! Our emergency repair team is available 24/7.</p>
+            <a class="btn btn-ghost" href="tel:+12345678900">Call Emergency Line</a>
+          </div>
+          <div class="card" style="padding:18px;background:linear-gradient(90deg,#c7d2fe,#99f6e4)">
+            <h3>🗓️ Schedule Online</h3>
+            <p>Book your appointment for installations, maintenance, or consultations.</p>
+            <a class="btn btn-ghost" href="#">Book Appointment</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container grid">
+      <div>
+        <div class="brand" style="color:#fff;margin-bottom:8px"><span class="logo">💧</span> Pure Water Solutions</div>
+        <p style="max-width:560px">Premium water purification done right. From installation to maintenance, we ensure your family always has access to pure, clean water.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul style="list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">How It Works</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul style="list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px">
+          <li>Installation</li>
+          <li>Maintenance</li>
+          <li>Repairs</li>
+          <li>Water Testing</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul style="list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px">
+          <li>📞 7030408866</li>
+          <li>✉️ khadge.santosh8866@gmail.com</li>
+          <li>📍 Pune, IN</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container sub">
+      <div>© <span id="year"></span> Pure Water Solutions. All rights reserved.</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <span class="pill" style="background:#0b1b33;color:#cbd5e1">✔️ Certified Technicians</span>
+        <span class="pill" style="background:#0b1b33;color:#cbd5e1">🛡️ 1‑Year Warranty</span>
+        <span class="pill" style="background:#0b1b33;color:#cbd5e1">📞 24/7 Support</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple mobile drawer (inject links on small screens)
+    const drawer = document.querySelector('.drawer');
+    drawer.innerHTML = `
+      <nav style="display:none;" id="mnav">
+        <div class="container" style="padding:10px 0">
+          <a class="btn btn-ghost" style="width:100%;margin:6px 0" href="#home">Home</a>
+          <a class="btn btn-ghost" style="width:100%;margin:6px 0" href="#services">Services</a>
+          <a class="btn btn-ghost" style="width:100%;margin:6px 0" href="#process">How It Works</a>
+          <a class="btn btn-ghost" style="width:100%;margin:6px 0" href="#about">About</a>
+          <a class="btn btn-primary" style="width:100%;margin:6px 0" href="#contact">Get Quote</a>
+        </div>
+      </nav>`;
+    const toggle = document.querySelector('.mobile-toggle');
+    toggle?.addEventListener('click',()=>{
+      const m = document.getElementById('mnav');
+      if(!m) return; 
+      m.style.display = m.style.display==='block' ? 'none' : 'block';
+    });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(!id || id==='#') return;
+        const el = document.querySelector(id);
+        if(!el) return;
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth',block:'start'});
+        const m = document.getElementById('mnav'); if(m) m.style.display='none';
+      });
+    });
+
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
